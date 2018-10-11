@@ -22,9 +22,9 @@ public class Person {
     private final IntegerProperty postalCode;
     private final StringProperty city;
 
-  /*  public Person() {
+   public Person() {
         this(null, null);
-    }*/
+    }
 
     public Person(String firstName, String lastName) {
         this.firstName = new SimpleStringProperty(firstName);
