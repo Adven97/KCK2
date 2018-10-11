@@ -1,8 +1,11 @@
 package address.view;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import address.model.Person;
@@ -23,7 +26,7 @@ public class PersonEditDialogController {
     @FXML
     private TextField postalCodeField;
     @FXML
-    private TextField cityField;
+    private ComboBox cityField;
 
 
     private Stage dialogStage;
@@ -34,8 +37,16 @@ public class PersonEditDialogController {
      * Initializes the controller class. This method is automatically called
      * after the fxml file has been loaded.
      */
+    ObservableList<String> cityList = FXCollections.observableArrayList("Zgierz","Lodz","Warszawa", "Radom",
+            "Sosnowiec", "Poznań", "Gdańsk", "Wrocław", "Berlin", "Dortmund", "Cordoba", "Buenos Aires");
+
     @FXML
     private void initialize() {
+
+
+
+        cityField.setValue("Zgierz");
+        cityField.setItems(cityList);
     }
 
     /**
@@ -59,7 +70,7 @@ public class PersonEditDialogController {
         lastNameField.setText(person.getLastName());
         streetField.setText(person.getStreet());
         postalCodeField.setText(Integer.toString(person.getPostalCode()));
-        cityField.setText(person.getCity());
+        cityField.setValue("Zgierz");
 
     }
 
@@ -82,7 +93,8 @@ public class PersonEditDialogController {
             person.setLastName(lastNameField.getText());
             person.setStreet(streetField.getText());
             person.setPostalCode(Integer.parseInt(postalCodeField.getText()));
-            person.setCity(cityField.getText());
+
+            person.setCity(cityField.getSelectionModel().getSelectedItem().toString());
 
             okClicked = true;
             dialogStage.close();
@@ -126,9 +138,6 @@ public class PersonEditDialogController {
             }
         }
 
-        if (cityField.getText() == null || cityField.getText().length() == 0) {
-            errorMessage += "No valid city!\n";
-        }
 
 
         if (errorMessage.length() == 0) {
