@@ -37,7 +37,7 @@ public class PersonEditDialogController {
      * Initializes the controller class. This method is automatically called
      * after the fxml file has been loaded.
      */
-    ObservableList<String> cityList = FXCollections.observableArrayList("Zgierz","Lodz","Warszawa", "Radom",
+    private ObservableList<String> cityList = FXCollections.observableArrayList("Zgierz","Łódź","Warszawa", "Radom",
             "Sosnowiec", "Poznań", "Gdańsk", "Wrocław", "Berlin", "Dortmund", "Cordoba", "Buenos Aires");
 
     @FXML
